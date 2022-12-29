@@ -1,4 +1,4 @@
-This folder contains the GCMC simulation code for running the "fixed obstacle simulations" introduced in the maintext, at specified Jm, Jp, fo (0, 0.1,0.2,0.3), with l=5, ht=1 and tether fraction=0.1 (number of tethers divided by the total number of lipids).
+This folder contains the GCMC simulation code for running the "fixed obstacle simulations" introduced in the maintext, at specified Jm, Jp, fo (0, 0.1, 0.2, 0.3), with l=5, ht=1 and tether fraction=0.1 (number of tethers divided by the total number of lipids).
 
 The code for excuting the GCMC simulation is contained in the file "9mer_memb_simu_obstacle.py".
 

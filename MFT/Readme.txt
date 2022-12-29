@@ -1,0 +1,1 @@
+The primary code used for MFT calculation is provided in the jupyter notebook "MFT_obstacle".

@@ -176,51 +176,7 @@ def readinconfigs(configfile, L):
         
     return result_configs
 
-def Plot_3D_lattice(lattice_array, polymerpool, polymlength=9, D=15, L=20, latfigtitle=None, latfigname=None):
-    latt_fig = plt.figure(figsize=(6,6),dpi=300)
-    lf = latt_fig.add_subplot((111),projection='3d')
-
-    lf.set_xticks(np.arange(0,L))
-    lf.set_yticks(np.arange(0,L))   
-    lf.set_zticks(np.arange(0,D))
-
-    for i in range(D):
-        for j in range(L):
-            for k in range(L):
-                if lattice_array[i,j,k]==1:
-                    lf.scatter(j,k,i, color='red', marker='o', s=1)
-                
-    if polymlength==9:
-        for each in polymerpool:
-            boundary_check = True
-            for k in range(9):
-                for h in range(k+1,9):
-                    for i in range(3):
-                        if abs(each[k][i]-each[h][i])>8:
-                            boundary_check = False
-#                             print(each)
-                            break
-                    if not boundary_check: break
-                if not boundary_check: break
-            if boundary_check:
-                lf.plot([each[0][1], each[1][1]], [each[0][2], each[1][2]], [each[0][0], each[1][0]], 'r-')
-                lf.plot([each[1][1], each[2][1]], [each[1][2], each[2][2]], [each[1][0], each[2][0]], 'r-')
-                lf.plot([each[2][1], each[3][1]], [each[2][2], each[3][2]], [each[2][0], each[3][0]], 'r-')
-                lf.plot([each[3][1], each[4][1]], [each[3][2], each[4][2]], [each[3][0], each[4][0]], 'r-')
-                lf.plot([each[4][1], each[5][1]], [each[4][2], each[5][2]], [each[4][0], each[5][0]], 'r-')
-                lf.plot([each[5][1], each[6][1]], [each[5][2], each[6][2]], [each[5][0], each[6][0]], 'r-')
-                lf.plot([each[6][1], each[7][1]], [each[6][2], each[7][2]], [each[6][0], each[7][0]], 'r-')
-                lf.plot([each[7][1], each[8][1]], [each[7][2], each[8][2]], [each[7][0], each[8][0]], 'r-')
-    
-#     for asdf in [[1, 0, 35], [1, 0, 36], [2, 0, 36], [2, 39, 36], [1, 39, 36]]:
-#         lf.scatter(asdf[1], asdf[2], asdf[0], color='blue', marker='o', s=1)
-    print([len(polymerpool),np.sum(lattice_array)])
-    if latfigtitle:
-        lf.set_title(latfigtitle)
-    if latfigname:
-        latt_fig.savefig(latfigname)
-        
-        
+   
 def Plot_3D_lattice_memb(lattice_array, polymerpool, memarr, D,L, polymlength=5, latfigtitle=None, latfigname=None):
     latt_fig = plt.figure(figsize=(6,6),dpi=300)
     lf = latt_fig.add_subplot((111),projection='3d')
@@ -291,19 +247,3 @@ def Plot_3D_lattice_memb(lattice_array, polymerpool, memarr, D,L, polymlength=5,
     if latfigname:
         latt_fig.savefig(latfigname)
     plt.close(latt_fig)
-
-
-def x_rotation(vector,theta):
-    """Rotates 3-D vector around x-axis"""
-    R = np.array([[1,0,0],[0,np.cos(theta),-np.sin(theta)],[0, np.sin(theta), np.cos(theta)]])
-    return np.dot(R,vector)
-
-def y_rotation(vector,theta):
-    """Rotates 3-D vector around y-axis"""
-    R = np.array([[np.cos(theta),0,np.sin(theta)],[0,1,0],[-np.sin(theta), 0, np.cos(theta)]])
-    return np.dot(R,vector)
-
-def z_rotation(vector,theta):
-    """Rotates 3-D vector around z-axis"""
-    R = np.array([[np.cos(theta), -np.sin(theta),0],[np.sin(theta), np.cos(theta),0],[0,0,1]])
-    return np.dot(R,vector)
